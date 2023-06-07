@@ -3,6 +3,7 @@ namespace Toanld\DebugToSql;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\URL;
+use Toanld\DebugObserver\DebugObserver;
 
 
 trait DebugToSQL
@@ -34,12 +35,18 @@ trait DebugToSQL
         }
         $trace = json_encode($arrNew);
         $trace = str_replace('"',"",$trace);
-
-        self::addGlobalScope('comment', function (Builder $builder) use ($comment,$trace) {
-            if(!empty($comment)) {
-                $databaseName = config('database.connections.'.config('database.default') . '.database');
-                $builder->whereRaw(" 1 \n /* Db: " . $databaseName . ": \n " . base64_encode($comment) . "\n " . $trace . ' */' . "\n");
+        if(!empty($comment)) {
+            $databaseName = config('database.connections.'.config('database.default') . '.database');
+            $commentSql = "\n /* Db: " . $databaseName . ": \n " . base64_encode($comment) . "\n " . $trace . ' */' . "\n";
+            app()->singleton('debugSqlComment', function () use ($commentSql) {
+                return $commentSql;
+            });
+        }
+        self::addGlobalScope('comment', function (Builder $builder) use ($commentSql,$trace) {
+            if(!empty($commentSql)) {
+                $builder->whereRaw(" 1 $commentSql");
             }
         });
+        self::observe(DebugObserver::class);
     }
 }
