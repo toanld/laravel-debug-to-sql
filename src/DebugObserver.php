@@ -1,6 +1,6 @@
 <?php
 
-namespace Toanld\DebugObserver;
+namespace Toanld\DebugToSql;
 
 use Illuminate\Database\Connection;
 

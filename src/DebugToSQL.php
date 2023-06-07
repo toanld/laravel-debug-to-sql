@@ -3,7 +3,7 @@ namespace Toanld\DebugToSql;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\URL;
-use Toanld\DebugObserver\DebugObserver;
+use Toanld\DebugToSql\DebugObserver;
 
 
 trait DebugToSQL
