@@ -25,7 +25,7 @@ class DebugObserver
             ->beforeExecuting(function (
                 string     &$query,
                 array      &$bindings,
-                Connection $connection,
+                Connection $connection
             ) {
                 $debugSqlComment = app('debugSqlComment');
                 $debugSqlComment = str_replace(['/*','*/'],"",$debugSqlComment);
