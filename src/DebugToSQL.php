@@ -8,6 +8,7 @@ use Toanld\DebugToSql\DebugObserver;
 
 trait DebugToSQL
 {
+    public $myClass = null;
     /**
      * Boot the soft deleting trait for a model.
      *
@@ -15,6 +16,9 @@ trait DebugToSQL
      */
     public static function bootDebugToSQL()
     {
+        if(app()->runningInConsole()){
+            return;
+        }
         $comment = URL::current();
         $arrFile = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
         $basePath = base_path();
