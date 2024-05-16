@@ -19,11 +19,24 @@ Usage
 
 Using the `DebugToSQL` trait in your Eloquent models will enable the package's functionality. Here’s a simple example to get you started:
 
-php
+```shell
+composer require toanld/laravel-debug-to-sql
+```
 
-Copy code
+### Syntax
 
-```namespace App;  use Illuminate\Database\Eloquent\Model; use Toanld\DebugToSql\DebugToSQL;  class Test extends Model {     use DebugToSQL; }```
+```php
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+use Toanld\DebugToSql\DebugToSQL;
+
+class Test extends Model
+{
+    use DebugToSQL;
+}
+```
+
 
 How It Works
 ------------
