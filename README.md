@@ -23,7 +23,7 @@ php
 
 Copy code
 
-`namespace App;  use Illuminate\Database\Eloquent\Model; use Toanld\DebugToSql\DebugToSQL;  class Test extends Model {     use DebugToSQL; }`
+```namespace App;  use Illuminate\Database\Eloquent\Model; use Toanld\DebugToSql\DebugToSQL;  class Test extends Model {     use DebugToSQL; }```
 
 How It Works
 ------------
